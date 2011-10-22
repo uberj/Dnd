@@ -10,7 +10,8 @@ class elfRanger:
 class FSLBow:
     __name__ = "Flaming Shock Long Bow"
     def __init__(self, attack):
-        self.attack = attack
+        print "**** "+self.__name__+" : Base Attack "+str(attack)+" ****"
+        self.attack = int(attack)
 
 
     def meta_attack(self, attack_type):
@@ -27,17 +28,29 @@ class FSLBow:
         else:
             pbs = 0
 
-        base_attack = self.attack + mc + pbs
+        shot = raw_input("Drow? [y/n]")
+        if shot == 'y':
+            drow = 2
+        else:
+            drow = 0
+
+        shot = raw_input("Magical Huminoid? [y/n]")
+        if shot == 'y':
+            mh = 4
+        else:
+            mh = 0
+
+        base_attack = self.attack + mc + pbs + drow
 
         if attack_type == 'std':
             print "+Standard Bow Attack"
             attack = base_attack+random.randint(1,20)
-            self.standard_attack(attack, mc=mc, pbs=pbs)
+            self.standard_attack(attack, mc=mc, pbs=pbs, drow=drow, mh=mh)
         elif attack_type == 'rapid':
             print "+Rapid Shot"
             print "++First Arrow"
             attack = base_attack+random.randint(1,20)
-            self.rapid_shot(attack, mc, pbs)
+            self.rapid_shot(attack, mc, pbs, drow, mh)
 
             print "++Second Arrow"
             attack = base_attack+random.randint(1,20)
@@ -45,59 +58,59 @@ class FSLBow:
         elif attack_type == 'multi':
             print "+Multi Shot"
             attack = base_attack+random.randint(1,20)
-            self.multishot(attack, mc, pbs)
+            self.multishot(attack, mc, pbs, drow, mh)
         else:
             print "Unsupported attack type: "+str(attack_type)
 
 
-    def arrow_shot(self, mc=False, pbs=False):
+    def arrow_shot(self, mc=0, pbs=0, drow=0, mh=0):
         print "====   ATTACK   ===="
         fire_dmg1_d8 = random.randint(1,8)
         shock_dmg1_d8 = random.randint(1,8)
         normal1_d6 = random.randint(1,6)
-        static = 3 + normal1_d6 + mc + pbs
+        static = 3 + normal1_d6 + mc + pbs +drow +mh
         print "Fire dmg: "+str(fire_dmg1_d8)
         print "Shock dmg: "+str(shock_dmg1_d8)
-        print "Normal stats (+3): d8:"+str(normal1_d6)+" mc:"+str(mc)+" pbs:"+str(pbs)
+        print "Normal stats (+3): d8:"+str(normal1_d6)+" mc:"+str(mc)+" pbs:"+str(pbs)+" drow:"+str(drow)+" mh:"+str(mh)
         print "Normal dmg: "+str(static)
         print
         return (fire_dmg1_d8, shock_dmg1_d8, static)
 
-    def rapid_shot(self, attack, mc, pbs ):
+    def rapid_shot(self, attack, mc, pbs, drow, mh ):
         attack -=2
         print "++Rapid shot attack (-2): "+str(attack)
-        dmg = raw_input("Roll attack? [y/n]")
+        dmg = raw_input("Roll Damage? [y/n]")
         if dmg == 'n':
             print "Done."
             return
         else:
-            first = self.arrow_shot(mc=mc, pbs=pbs)
+            first = self.arrow_shot(mc=mc, pbs=pbs, drow=drow, mh=mh)
             print "Total dmg: "+str(first[0]+first[1]+first[2])
             print
 
-    def standard_attack(self, attack, mc, pbs ):
+    def standard_attack(self, attack, mc, pbs, drow, mh ):
         print "++Standard shot attack (-0): "+str(attack)
-        dmg = raw_input("Roll attack? [y/n]")
+        dmg = raw_input("Roll Damage? [y/n]")
         if dmg == 'n':
             print "Done."
             return
         else:
-            first = self.arrow_shot(mc=mc, pbs=pbs)
+            first = self.arrow_shot(mc=mc, pbs=pbs, drow=drow, mh=mh)
             print "Total dmg: "+str(first[0]+first[1]+first[2])
             print
 
-    def multishot(self, attack, mc, pbs):
+    def multishot(self, attack, mc, pbs, drow, mh):
         print "++Multishot attack (-4): "+str(attack)
         attack -=4
-        dmg = raw_input("Roll attack? [y/n]")
+        dmg = raw_input("Roll Damage? [y/n]")
         if dmg == 'n':
             print "Done."
             return
         else:
-            print "Frist arrow:"
-            first = self.arrow_shot(mc=mc, pbs=pbs)
-            print "Second arrow:"
-            second = self.arrow_shot(mc=mc, pbs=pbs)
+            print "++Frist arrow:"
+            first = self.arrow_shot(mc=mc, pbs=pbs, drow=drow, mh=mh)
+            print "++Second arrow:"
+            second = self.arrow_shot(mc=mc, pbs=pbs, drow=drow, mh=mh)
             print "Total fire: "+str(first[0]+second[0])
             print "Total shock: "+str(first[1]+second[1])
             print "Total normal: "+str(first[2]+second[2])
