@@ -13,7 +13,7 @@ while True:
         bow.meta_attack(attack)
     elif cmd == 'help':
         print "Commands"
-        print "attack -- launch an attack"
+        print "attack <base attack>"
     elif dice:
         dice = dice.groups(0)
         for i in range(0,int(dice[0])):

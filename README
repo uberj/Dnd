@@ -1,0 +1,25 @@
+DND Utils
+=========
+These are some scripts that automate my elf ranger.
+
+There is a shell that you can use to interact with all the functions and attacks.
+
+To start the shell run:
+
+    python dnd_shell.py
+
+Once you are in the shell type:
+
+    $:>help
+
+If you want to attack run:
+
+    $:>attack 21
+
+Where 21 is your base attack.
+
+
+Gillford the Illequiped
+=======================
+Gillford the Illequiped grew up in the East. Existence was rough as he moved from desert town to desert town. Living as a nomad made him resourceful and an expert in navigating arid lands and dark underground caves. He has no memory of his life before the age of thirteen; everything after those early years he can recall with unnatural clarity. He hunts his food and enemies at a distance with his long bow and is an expert at approaching at his foes from all angles. As a profession he works
+as a sort of "jack of all trades", running errands and delivering messages for nomadic traders and town officials.  Occasionally he uses his skills with a bow to carry out "contracts". Gillford the Illequiped is not the type to lead, but is instead content to follow others, but his loyalty is not easily earned. Gillford the Illequiped worships "el Lampe", God of the Day star.
