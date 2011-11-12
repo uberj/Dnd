@@ -2,6 +2,8 @@ DND Utils
 =========
 These are some scripts that automate my elf ranger.
 
+--There is vary little error handeling.--
+
 There is a shell that you can use to interact with all the functions and attacks.
 
 To start the shell run:

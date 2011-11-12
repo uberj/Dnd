@@ -44,20 +44,28 @@ class FSLBow:
 
         if attack_type == 'std':
             print "+Standard Bow Attack"
-            attack = base_attack+random.randint(1,20)
+            roll = random.randint(1,20)
+            self.nat_20(roll)
+            attack = base_attack+roll
             self.standard_attack(attack, mc=mc, pbs=pbs, drow=drow, mh=mh)
         elif attack_type == 'rapid':
             print "+Rapid Shot"
             print "++First Arrow"
-            attack = base_attack+random.randint(1,20)
+            roll = random.randint(1,20)
+            self.nat_20(roll)
+            attack = base_attack+roll
             self.rapid_shot(attack, mc, pbs, drow, mh)
 
             print "++Second Arrow"
-            attack = base_attack+random.randint(1,20)
+            roll = random.randint(1,20)
+            self.nat_20(roll)
+            attack = base_attack+roll
             self.rapid_shot(attack, mc, pbs)
         elif attack_type == 'multi':
             print "+Multi Shot"
-            attack = base_attack+random.randint(1,20)
+            roll = random.randint(1,20)
+            self.nat_20(roll)
+            attack = base_attack+roll
             self.multishot(attack, mc, pbs, drow, mh)
         else:
             print "Unsupported attack type: "+str(attack_type)
@@ -117,3 +125,10 @@ class FSLBow:
             print "Total dmg: "+str(first[0]+second[0]+first[1]+second[1]+first[2]+second[2])
             print
 
+    def nat_20(self, roll):
+        if roll == 20:
+            print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            print "!!!!!!!!!!!! NAT 20 !!!!!!!!!!!!!!!!!"
+            print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        else:
+            print "d20 was: "+str(roll)
