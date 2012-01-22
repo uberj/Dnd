@@ -50,13 +50,13 @@ class FSLBow:
             self.standard_attack(attack, mc=mc, pbs=pbs, drow=drow, mh=mh)
         elif attack_type == 'rapid':
             print "+Rapid Shot"
-            print "++First Arrow"
+            print "++ First Arrow"
             roll = random.randint(1,20)
             self.nat_20(roll)
             attack = base_attack+roll
             self.rapid_shot(attack, mc, pbs, drow, mh)
 
-            print "++Second Arrow"
+            print "++ Second Arrow"
             roll = random.randint(1,20)
             self.nat_20(roll)
             attack = base_attack+roll
@@ -86,7 +86,7 @@ class FSLBow:
 
     def rapid_shot(self, attack, mc, pbs, drow, mh ):
         attack -=2
-        print "++Rapid shot attack (-2): "+str(attack)
+        print "++ Rapid shot attack (-2): "+str(attack)
         dmg = raw_input("Roll Damage? [y/n]")
         if dmg == 'n':
             print "Done."
@@ -97,7 +97,7 @@ class FSLBow:
             print
 
     def standard_attack(self, attack, mc, pbs, drow, mh ):
-        print "++Standard shot attack (-0): "+str(attack)
+        print "++ Standard shot attack (-0): "+str(attack)
         dmg = raw_input("Roll Damage? [y/n]")
         if dmg == 'n':
             print "Done."
@@ -108,16 +108,16 @@ class FSLBow:
             print
 
     def multishot(self, attack, mc, pbs, drow, mh):
-        print "++Multishot attack (-4): "+str(attack)
+        print "++ Multishot attack (-4): "+str(attack)
         attack -=4
         dmg = raw_input("Roll Damage? [y/n]")
         if dmg == 'n':
             print "Done."
             return
         else:
-            print "++Frist arrow:"
+            print "++ Frist arrow:"
             first = self.arrow_shot(mc=mc, pbs=pbs, drow=drow, mh=mh)
-            print "++Second arrow:"
+            print "++ Second arrow:"
             second = self.arrow_shot(mc=mc, pbs=pbs, drow=drow, mh=mh)
             print "Total fire: "+str(first[0]+second[0])
             print "Total shock: "+str(first[1]+second[1])
